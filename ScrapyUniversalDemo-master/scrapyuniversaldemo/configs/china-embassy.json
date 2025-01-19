@@ -1,0 +1,62 @@
+{
+    "spider": "universal",
+    "type": "中非 ",
+    "dbase": "army",
+    "img":"img",
+    "src":"src",
+    "home": "http://za.china-embassy.gov.cn/chn/zgxw/",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+    }, 
+    "start_urls": [
+      "http://za.china-embassy.gov.cn/chn/zgxw/"
+    ],
+    "allowed_domains": [
+      "za.china-embassy.gov.cn"
+    ],
+    "rules": [
+      {
+        "link_extractor": {
+          "allow": "/index_\\d+\\.htm"
+        },
+        "follow": true
+        
+      },
+      {
+        "link_extractor": {
+          "allow": "/.+\\.htm"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//div[@id='News_Body_Title']//text()"
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//div[@id='News_Body_Txt_A']//p/text()"
+          }
+        ],
+        "date": [
+          {
+            "method": "xpath",
+            "arg": "//div[@id='News_Body_Time']//text()"
+  
+          }
+        ]
+
+      }
+    }
+  
+  }
+  
+  

@@ -1,0 +1,57 @@
+{
+  "spider": "universal",
+  "type": "中非",
+  "dbase": "army",
+  "home": "http://nigeriaworld.com",
+  "settings": {
+    "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+  }, 
+  "start_urls": [
+    "http://nigeriaworld.com"
+  ],
+  "allowed_domains": [
+    "nigeriaworld.com"
+  ],
+  "rules": [
+    {
+      "link_extractor": {
+        "allow": "/news/.+/"
+      },
+      "follow": false,
+      "callback": "parse_detail"
+    }
+  ],
+  "item": {
+    "class": "MovieItem",
+    "loader": "MovieItemLoader",
+    "attrs": {
+      "name": [
+        {
+          "method": "xpath",
+          "arg": "//div[@class='newsstorytitle']/text()"
+        }
+      ],
+      "information": [
+        {
+          "method": "xpath",
+          "arg": "//div[@class='contenttext']//p/text()"
+        }
+      ],
+      "date": [
+        {
+          "method": "xpath",
+          "arg": "//p[@class='storytitle2']/text()"
+        }
+      ],
+      "picture": [
+        {
+          "method": "xpath",
+          "arg": "//td[@style='padding-bottom: 3px;']//img/@src"
+        }
+      ]
+
+    }
+  }
+  
+}
+

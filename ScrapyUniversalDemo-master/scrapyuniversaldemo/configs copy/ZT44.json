@@ -1,0 +1,58 @@
+{
+    "spider": "universal",
+    "type": "摩洛哥",
+    "url_from":"United Cities and Local Governments of Africa",
+    "dbase": "ZT",
+    "collection":"net",
+    "model": false,
+    "video":"",
+    "video_src":"",
+    "audio":"",
+    "audio_src":"",
+    "button":"",
+    "home": "https://www.uclga.org/",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:123.0) Gecko/20100101 Firefox/123.0"
+    }, 
+    "start_urls": [
+      "https://www.uclga.org/media-news-room/news/?avia-element-paging=1"
+    ],
+    "allowed_domains": [
+      "www.uclga.org"
+    ],
+    "rules": [
+      {
+        "link_extractor": {
+          "allow": "/news/\\?avia-element-paging=\\d+"
+        },
+        "follow": true
+      },
+      {
+        "link_extractor": {
+          "allow": "/news/.+/"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class='avia_textblock']/h3/strong/text()"
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class='main_color container_wrap_first container_wrap fullsize']//div[@class='avia_textblock']//p//text()"
+          }
+        ]
+  
+      }
+    }
+  
+  }

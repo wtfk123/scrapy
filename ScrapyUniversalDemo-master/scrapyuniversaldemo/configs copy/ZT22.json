@@ -1,0 +1,57 @@
+{
+    "spider": "universal",
+    "type": "埃塞俄比亚",
+    "url_from":"联合国非洲经济委员会",
+    "dbase": "ZT",
+    "collection":"net",
+    "model": false,
+    "video":"",
+    "video_src":"",
+    "audio":"",
+    "audio_src":"",
+    "button":"",
+    "home": "https://www.uneca.org/?q=media-centre/",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:123.0) Gecko/20100101 Firefox/123.0"
+    }, 
+    "start_urls": [
+      "https://www.uneca.org/media-centre"
+    ],
+    "allowed_domains": [
+      "www.uneca.org"
+    ],
+    "rules": [
+      {
+        "link_extractor": {
+          "allow": "/.+"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class ='main-container']//h1[@class ='page-header']/text()" 
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class ='main-container']//div[@class='region region-content']//div[@class='field-item even']//p//text()"
+          }
+        ],
+        "date": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class ='main-container']//div[@class='field field-name-field-date field-type-datetime field-label-hidden']//span[@class='date-display-single']/text()"
+          }
+        ]   
+      }
+    }
+  
+  }

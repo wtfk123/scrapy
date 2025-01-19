@@ -1,0 +1,54 @@
+    {
+        "spider": "universal",
+        "type": "NBC新闻",
+        "dbase": "army",
+        "home": "https://www.nbcnews.com/",
+        "settings": {
+        "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.139 Safari/537.36"
+        },
+        "start_urls": [
+        "https://www.nbcnews.com/"
+        ],
+        "allowed_domains": [
+        "www.nbcnews.com"
+        ],
+        "rules": [
+        {
+            "link_extractor": {
+            "allow": "/.+/.+/.+"
+            },
+            "follow": false,
+            "callback": "parse_detail"
+        }
+        ],
+        "item": {
+        "class": "MovieItem",
+        "loader": "MovieItemLoader",
+        "attrs": {
+            "name": [
+            {
+                "method": "xpath",
+                "arg": "//div[@class=\"article-hero-headline layout-grid-item grid-col-10-l\"]/h1/text()"
+            }
+            ],
+            "date": [
+            {
+                "method": "xpath",
+                "arg": "//div[@class=\"article-body__date-source\"]/time/text()"
+            }
+            ],
+            "editor": [
+            {
+                "method": "xpath",
+                "arg": "//div[@class=\"article-inline-byline\"]/span//text()"
+            }
+            ],
+            "information": [
+            {
+                "method": "xpath",
+                "arg": "//div//p//text()"
+            }
+            ]
+        }
+        }
+    }

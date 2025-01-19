@@ -1,0 +1,73 @@
+{
+    "spider": "universal",
+    "type": "中国",
+    "url_from":"中国新闻网",
+    "dbase": "ZT",
+    "collection":"net",
+    "model": false,
+    "video":"",
+    "video_src":"",
+    "audio":"",
+    "audio_src":"",
+    "button":"",
+    "home": "https://www.chinanews.com.cn/world/",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+    }, 
+    "start_urls": [
+      "https://www.chinanews.com.cn/world/"
+    ],
+    "allowed_domains": [
+      "www.chinanews.com.cn"
+    ],
+    "rules": [
+      {
+        "link_extractor": {
+          "allow": "/w/d+/d+/d+"
+        },
+        "follow": true
+        
+      },
+      {
+        "link_extractor": {
+          "allow": "/.+/"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class='content_maincontent_more']/h1/text()"
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class='content_maincontent_content']//p//text()"
+          }
+        ],
+        "date": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class='content_left_time'][1]/text()"
+  
+          }
+        ],
+        "editor": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class='adEditor']//span/text()"
+  
+          }
+        ]
+  
+      }
+    }
+  
+  }

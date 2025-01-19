@@ -1,0 +1,53 @@
+{
+  "spider": "universal",
+  "type": "军事新闻，军事历史，军事情报（army）",
+  "dbase": "army",
+  "home": "http://strategypage.com/",
+  "settings": {
+    "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+  }, 
+  "start_urls": [
+    "http://strategypage.com/"
+  ],
+  "allowed_domains": [
+    "strategypage.com"
+  ],
+  "rules": [
+    {
+      "link_extractor": {
+        "allow": "r'/news\\d+\\.html'"
+        
+      },
+      "follow": true
+      
+    }, 
+    {
+      "link_extractor": {
+        "allow": "/.+\\/.+\\/articles/.+\\.aspx"
+      },
+      "follow": false,
+      "callback": "parse_detail"
+    }
+  ],
+  "item": {
+    "class": "MovieItem",
+    "loader": "MovieItemLoader",
+    "attrs": {
+      "name": [
+        {
+          "method": "xpath",
+          "arg": "//div[@class='single_page_area']//h2[@class='post_title']/text()"
+        }
+      ],
+      "information": [
+        {
+          "method": "xpath",
+          "arg": "//div[@itemprop='articleBody']/p/text()"
+
+        }
+      ]
+    }
+  }
+}
+  
+  

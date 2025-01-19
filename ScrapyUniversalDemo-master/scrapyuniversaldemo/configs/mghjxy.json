@@ -1,0 +1,66 @@
+    {
+        "spider": "universal",
+        "type": "美国海军学院（军事网站）",
+        "dbase": "army",
+        "home": "https://www.cnas.org/events",
+        "settings": {
+        "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+        }, 
+        "start_urls": [
+        "https://www.cnas.org/events"
+        ],
+        "allowed_domains": [
+        "www.cnas.org"
+        ],
+        "rules": [
+            {
+                "link_extractor": {
+                "allow": "r'p\\d+'"
+                },
+                "follow": true
+            },
+        {
+            "link_extractor": {
+            "allow": "/.+/"
+            },
+            "follow": false,
+            "callback": "parse_detail"
+        }
+        ],
+        "item": {
+        "class": "MovieItem",
+        "loader": "MovieItemLoader",
+        "attrs": {
+            "name": [
+            {
+                "method": "xpath",
+                "arg": "//h1[@class=\"page-title\"]/text()"
+            }
+            ],
+            "information": [
+            {
+                "method": "xpath",
+                "arg": "//div//p//text()"
+            }
+            ],
+            "date": [
+            {
+                "method": "xpath",
+                "arg": "//span[@class=\"black\"]/text()"
+    
+            }
+            ],
+    
+            "editor": [
+            {
+                "method": "xpath",
+                "arg": "//strong/text()"
+            }
+            ]
+    
+        }
+        }
+        
+    }
+    
+    

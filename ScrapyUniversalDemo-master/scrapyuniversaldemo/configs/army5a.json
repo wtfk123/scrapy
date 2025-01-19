@@ -1,0 +1,68 @@
+{
+    "spider": "universal",
+    "type": "美国国家安全，国防和军事军务等领域的新闻报道和分析",
+    "dbase": "army",
+    "collection":"net",
+    "model": false,
+    "video":"",
+    "video_src":"",
+    "audio":"",
+    "audio_src":"",
+    "button":"",
+    "home": "https://www.defenseone.com/",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+    }, 
+    "start_urls": [
+      "https://www.defenseone.com/threats/"
+    ],
+    "allowed_domains": [
+        "www.defenseone.com"
+    ],
+    "rules": [
+
+      {
+        "link_extractor": {
+          "allow": "/.+/"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"ge-header\"]//h1//text()"
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"content-body wysiwyg l-content-well wysiwyg-article\"]//p/text()"
+          }
+        ],
+        "date": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"content-publish-date\"]/time//text()"
+  
+          }
+        ],
+        "editor": [
+            {
+              "method": "xpath",
+              "arg": "//div//span[@class=\"authors-multiple\"]/a//text()"
+    
+            }
+          ]
+
+      }
+    }
+  
+  }
+  
+  

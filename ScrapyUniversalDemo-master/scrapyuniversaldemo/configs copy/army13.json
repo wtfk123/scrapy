@@ -1,0 +1,95 @@
+{
+    "spider": "universal",
+    "type": "美国陆军工兵部队",
+    "net_name": "美国陆军工兵部队",
+    "dbase": "army",
+    "home": "https://www.usace.army.mil/",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+    }, 
+    "start_urls": [
+      "https://www.usace.army.mil/Media/News/?Page=1"
+    ],
+    "allowed_domains": [
+      "www.usace.army.mil"
+    ],
+    "rules": [
+      {
+        "link_extractor": {
+          "allow": "/Media/News/\\?Page\\=\\d+"
+        },
+        "follow": true
+        
+      },
+      {
+        "link_extractor": {
+          "allow": "/Media/News/NewsSearch/Article/\\d+/.+/"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//h1[@class=\"title\"]/text()"
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"da_black\"]/p/text()"
+          }
+        ],
+        "date": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"info\"]/div/b/text()"
+  
+          }
+        ],
+  
+        "editor": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"info\"]//a/text()"
+          }
+        ]
+
+      }
+    },
+        "headers": {
+            "authority": "analytics.dvidshub.net",
+            "accept": "application/json, text/javascript, */*; q=0.01",
+            "accept-language": "zh-CN,zh;q=0.9,en;q=0.8",
+            "content-type": "application/json; charset=UTF-8",
+            "origin": "https://www.usace.army.mil",
+            "referer": "https://www.usace.army.mil/",
+            "sec-ch-ua": "\"Google Chrome\";v=\"119\", \"Chromium\";v=\"119\", \"Not?A_Brand\";v=\"24\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+
+    },
+    "queries":{
+              
+    
+        "name": "loaded",
+        "type": "video",
+        "domain": "www.usace.army.mil",
+        "type_id": 896666,
+        "original_referrer": "https://www.usace.army.mil/Media/News/?Page=3",
+        "unit": 276
+    
+    }
+  
+  }
+  
+  

@@ -1,0 +1,58 @@
+{
+    "spider": "universal",
+    "type": "南非",
+    "url_from":"EU Chamber of Commerce & Industry Southern Africa",
+    "dbase": "ZT",
+    "collection":"net",
+    "model": false,
+    "video":"",
+    "video_src":"",
+    "audio":"",
+    "audio_src":"",
+    "button":"",
+    "home": "https://www.euchamber.co.za/news/",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+    }, 
+    "start_urls": [
+      "https://www.euchamber.co.za/news/?avia-element-paging=1"
+    ],
+    "allowed_domains": [
+      "www.euchamber.co.za"
+    ],
+    "rules": [
+      {
+        "link_extractor": {
+          "allow": "/news/\\?avia-element-paging=\\d+"
+        },
+        "follow": true
+      },
+      {
+        "link_extractor": {
+          "allow": "/.+/"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class='avia_textblock']/p[1]/strong/text()"
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class='avia_textblock']//p//text()"
+          }
+        ]
+  
+      }
+    }
+  
+  }

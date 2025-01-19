@@ -1,0 +1,55 @@
+{
+    "spider": "universal",
+    "type": "美国海岸警卫（军事）",
+    "dbase": "army",
+    "home": "https://www.news.uscg.mil/Press-Releases/",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+    },
+    "start_urls": [
+      "https://www.news.uscg.mil/Press-Releases/"
+    ],
+    "allowed_domains": [
+      "www.news.uscg.mil"
+    ],
+    "rules": [
+      {
+        "link_extractor": {
+          "allow": "/Press-Releases/"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      },
+      {
+        "link_extractor": {
+          "allow": "/Article/.+/"
+        },
+        "follow": true
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//h1[@class='title']/text()"
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class='body']//p/text()"
+          }
+        ],
+        "date": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class='category-date']/text()"
+          }
+        ]
+      }
+    }
+  }
+  

@@ -1,0 +1,62 @@
+{
+    "spider": "universal",
+    "type": "国防日报官方网站    ",
+    "net_name": "国防日报官方网站    ",
+    "dbase": "army",
+    "home": "https://breakingdefense.com/",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+    }, 
+    "start_urls": [
+      "https://breakingdefense.com/"
+    ],
+    "allowed_domains": [
+      "breakingdefense.com"
+    ],
+    "rules": [
+
+      {
+        "link_extractor": {
+          "allow": "/\\d{4}/\\d{2}/[\\w\\-]+/"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"postHeader\"]//h1//text()"
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"entry\"]/p/text()"
+          }
+        ],
+        "date": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"postHeader\"]//span[@class=\"timestamp\"]/text()"
+  
+          }
+        ],
+        "editor": [
+            {
+              "method": "xpath",
+              "arg": "//div[@class=\"postHeader\"]//span/a/text()"
+    
+            }
+          ]
+
+      }
+    }
+  
+  }
+  
+  

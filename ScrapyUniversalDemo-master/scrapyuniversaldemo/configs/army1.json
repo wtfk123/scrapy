@@ -1,0 +1,75 @@
+{
+    "spider": "universal",
+    "type": "美国空军 ",
+    "net_name": "美国空军 ",
+    "dbase": "army",
+    "collection":"net",
+    "model": false,
+    "video":"",
+    "video_src":"",
+    "audio":"",
+    "audio_src":"",
+    "button":"",
+    "home": "https://www.af.mil/",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+    }, 
+    "start_urls": [
+      "https://www.af.mil/News/"
+    ],
+    "allowed_domains": [
+      "www.af.mil"
+    ],
+    "rules": [
+      {
+        "link_extractor": {
+          "allow": "r'/News/Category/\\d+'"
+        },
+        "follow": true
+        
+      },
+      {
+        "link_extractor": {
+          "allow": "/News/Article-Display/Article/\\d+/[\\w\\-]+/"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"container container-mid\"]//header/h1/text()"
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"container container-mid\"]//p/text()"
+          }
+        ],
+        "date": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"meta\"]/ul/li/time/text()"
+  
+          }
+        ],
+  
+        "editor": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"meta\"]/ul/li/text()"
+          }
+        ]
+
+      }
+    }
+  
+  }
+  
+  

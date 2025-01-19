@@ -1,0 +1,62 @@
+    {
+        "spider": "universal",
+        "type": "国际关系新闻",
+        "dbase": "army",
+        "home": "http://thediplomat.com/",
+        "settings": {
+        "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.139 Safari/537.36"
+        }, 
+        "start_urls": [
+        "http://thediplomat.com/"
+        ],
+        "allowed_domains": [
+        "thediplomat.com"
+        ],
+        "rules": [
+
+        {
+            "link_extractor": {
+            "allow": "/2023/\\d+/.+\\/"
+            },
+            "follow": false,
+            "callback": "parse_detail"
+        }
+        ],
+        "item": {
+        "class": "MovieItem",
+        "loader": "MovieItemLoader",
+        "attrs": {
+            "name": [
+            {
+                "method": "xpath",
+                "arg": "//div[@class=\"td-viewport\"]/main/article/header/h1/text()"
+            }
+            ],
+            "editor": [
+            {
+                "method": "xpath",
+                "arg": "//div[@class=\"td-author\"]/strong/span/text()"
+            }
+            ],
+            "date": [
+            {
+                "method": "xpath",
+                "arg": "//div[@class=\"td-date\"]/text()"
+    
+            }
+            ],
+    
+            "information": [
+            {
+                "method": "xpath",
+                "arg": "//section[@id=\"tda-gated-body\"]//text()"
+            }
+            ]
+    
+        }
+        }
+    }
+        
+    
+    
+    

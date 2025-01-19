@@ -1,0 +1,68 @@
+{
+    "spider": "universal",
+    "type": "海军陆战队时报网",
+    "dbase": "army",
+    "home": "https://www.marinecorpstimes.com/",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+    },
+    "start_urls": [
+      "https://www.marinecorpstimes.com/"
+    ],
+    "allowed_domains": [
+      "www.marinecorpstimes.com"
+    ],
+    "rules": [
+      {
+        "link_extractor": {
+          "allow": "r'/1076/index\\d+\\.html'"
+
+        },
+        "follow": true
+
+      },
+      {
+        "link_extractor": {
+          "allow": "/.+\\/[\\w\\-]+/"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\" t-base\"]//h1/text()"
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\" t-base\"]//p/text()"
+          }
+        ],
+        "froms": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\" t-base\"]//div[@class=\"List__Wrapper-sc-2xsad7-1 jteZJL\"]//a/text()"
+
+          }
+        ],
+
+        "editor": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\" t-base\"]//div[@class=\"ArticleHeader__BylineWrapper-sc-1dhqito-1 jMpCkX c-articleHeader__byline\"]/text()"
+          }
+        ]
+
+      }
+    }
+  }
+
+
+

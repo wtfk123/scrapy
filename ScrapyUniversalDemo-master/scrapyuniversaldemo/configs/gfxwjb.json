@@ -1,0 +1,55 @@
+{
+    "spider": "universal",
+    "type": "国防新闻警报（军事）",
+    "dbase": "army",
+    "home": "https://www.defensenews.com/naval/",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+    },
+    "start_urls": [
+      "https://www.defensenews.com/naval/"
+    ],
+    "allowed_domains": [
+      "www.defensenews.com"
+    ],
+    "rules": [
+      {
+        "link_extractor": {
+          "allow": "/naval/"
+        },
+        "follow": true
+      },
+      {
+        "link_extractor": {
+          "allow": "/\\d+\\/\\d+\\/\\d+\\/\\w+\\/"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//h1/text()"
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//p[@class='Paragraph-sc-1tqpf5s-0 kEzXdV body-paragraph']/text()"
+          }
+        ],
+        "date": [
+          {
+            "method": "xpath",
+            "arg": "//time[@class='DateTime-v3izhr-1 okBuN a-dateTime']/text()"
+          }
+        ]
+      }
+    }
+  }
+  

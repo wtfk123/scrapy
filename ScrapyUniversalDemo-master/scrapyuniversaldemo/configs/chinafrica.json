@@ -1,0 +1,60 @@
+{
+    "spider": "universal",
+    "type": "中非 ",
+    "dbase": "army",
+    "home": "http://www.chinafrica.cn/",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+    }, 
+    "start_urls": [
+      "http://www.chinafrica.cn/"
+    ],
+    "allowed_domains": [
+      "www.chinafrica.cn"
+    ],
+    "rules": [
+      {
+        "link_extractor": {
+          "allow": "/index_\\d+\\.html"
+        },
+        "follow": true
+        
+      },
+      {
+        "link_extractor": {
+          "allow": "/Homepage/.+\\.html"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//div//td[@class='dbt-2016e']//text()"
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//div//p//text()"
+          }
+        ],
+        "date": [
+          {
+            "method": "xpath",
+            "arg": "//div//td[@class='zz-2016e']//text()"
+  
+          }
+        ]
+
+      }
+    }
+  
+  }
+  
+  

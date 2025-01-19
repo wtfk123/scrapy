@@ -1,0 +1,61 @@
+{
+    "spider": "universal",
+    "type": "军事技术",
+    "dbase": "army",
+    "home": "http://www.militarytimes.com/",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.139 Safari/537.36"
+    }, 
+    "start_urls": [
+      "http://www.militarytimes.com/"
+    ],
+    "allowed_domains": [
+      "www.militarytimes.com"
+    ],
+    "rules": [
+      {
+        "link_extractor": {
+          "allow": "/.+/.+/\\d+/\\d+/\\d+/.+/"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"ArticleHeader__Meta-sc-1dhqito-4 cHZbZO c-articleHeader__meta\"]/h1/text()"
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//article[@class=\"default__ArticleBody-sc-1mncpzl-2 jNAvLn  o-articleBody c-articleBody articleBody --featured\"]/p/text()"
+          }
+        ],
+        "date": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"ArticleHeader__BylineWrapper-sc-1dhqito-1 jMpCkX c-articleHeader__byline\"]/div[@class=\"c-articleHeader__date\"]/time/text()"
+  
+          }
+        ],
+  
+        "editor": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"ArticleHeader__BylineWrapper-sc-1dhqito-1 jMpCkX c-articleHeader__byline\"]/div/span[@class=\"Byline__Author-sfpzx0-2 cURSzr\"]//text()"
+          }
+        ]
+  
+      }
+    }
+  }
+    
+  
+  
+  

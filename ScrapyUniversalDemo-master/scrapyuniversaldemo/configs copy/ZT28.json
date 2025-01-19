@@ -1,0 +1,59 @@
+{
+    "spider": "universal",
+    "type": "加纳",
+    "url_from":"绿色非洲青年组织",
+    "dbase": "ZT",
+    "collection":"net",
+    "model": false,
+    "video":"",
+    "video_src":"",
+    "audio":"",
+    "audio_src":"",
+    "button":"",
+    "home": "https://greenafricayouth.com/news/",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:123.0) Gecko/20100101 Firefox/123.0"
+    }, 
+    "start_urls": [
+      "https://greenafricayouth.com/news/"
+    ],
+    "allowed_domains": [
+      "greenafricayouth.com"
+    ],
+   
+    "rules": [
+      {
+        "link_extractor": {
+          "allow": "/news/page/\\d+/"
+        },
+        "follow": true
+        
+      },
+      {
+        "link_extractor": {
+          "allow": "/\\d+/\\d+/\\d+/.+/"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//div[@id='page']//div[@class='breadcroumb-area']//h2/text()" 
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//main[@id='primary']//div[@class='post-content']/p/text()"
+          }
+        ]  
+      }
+    }
+  
+  }

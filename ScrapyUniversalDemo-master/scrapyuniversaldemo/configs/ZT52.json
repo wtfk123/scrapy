@@ -1,0 +1,69 @@
+{
+    "spider": "universal",
+    "type": "美国",
+    "url_from":"人权观察",
+    "dbase": "ZT",
+    "collection":"net",
+    "model": false,
+    "video":"",
+    "video_src":"",
+    "audio":"",
+    "audio_src":"",
+    "button":"",
+    "home": "https://www.hrw.org/news/",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:123.0) Gecko/20100101 Firefox/123.0"
+    }, 
+    "start_urls": [
+      "https://www.hrw.org/news/"
+    ],
+    "allowed_domains": [
+      "www.hrw.org"
+    ],
+    "rules": [
+      {
+        "link_extractor":{    
+        "allow":"/\\d+/\\d+/\\d+"
+    }
+        ,"follow": true  
+      },{
+        "link_extractor": {
+          "allow": "/.+"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class='news-header__main text-gray-800']/h1/text()"
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class='article-body article-body--contained rich-text mx-auto']//p//text()"
+          }
+        ],
+        "date": [
+          {
+            "method": "xpath",
+            "arg": "//time/text()"
+          }
+        ],
+        "editor": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class='byline__name flex']/a/text()"
+          }
+        ]
+  
+      }
+    }
+  
+  }

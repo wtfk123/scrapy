@@ -1,0 +1,68 @@
+{
+    "spider": "universal",
+    "type": "美国国防情报局    ",
+    "net_name": "美国国防情报局    ",
+    "dbase": "army",
+    "home": "https://www.dia.mil/",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+    }, 
+    "start_urls": [
+      "https://www.dia.mil/News-Features/Articles"
+    ],
+    "allowed_domains": [
+        "www.dia.mil"
+    ],
+    "rules": [
+
+        {
+            "link_extractor": {
+              "allow": "/News-Features/Articles/\\?Page\\=\\d+"
+            },
+            "follow": true
+        },
+      {
+        "link_extractor": {
+          "allow": "/Articles/Article-View/Article/\\d+/[\\w\\-]+/"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"header\"]/h1/text()"
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"body\"]//text()"
+          }
+        ],
+        "date": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"category-date\"]/text()"
+  
+          }
+        ],
+        "editor": [
+            {
+              "method": "xpath",
+              "arg": "//div[@class=\"header\"]/p/span/text()"
+    
+            }
+          ]
+
+      }
+    }
+  
+  }
+  
+  

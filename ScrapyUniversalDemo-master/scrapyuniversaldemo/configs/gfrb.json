@@ -1,0 +1,43 @@
+{
+    "spider": "universal",
+    "type": "国防日报（军事）",
+    "dbase": "army",
+    "home": "https://www.defensedaily.com/",
+    "settings": {
+    "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+    },
+    "start_urls": [
+    "https://www.defensedaily.com/"
+    ],
+    "allowed_domains": [
+    "www.defensedaily.com"
+    ],
+    "rules": [
+    
+    {
+    "link_extractor": {
+    "allow": "/.+/[\\w-]+/"
+    },
+    "follow": false,
+    "callback": "parse_detail"
+    }
+    ],
+    "item": {
+    "class": "MovieItem",
+    "loader": "MovieItemLoader",
+    "attrs": {
+    "name": [
+    {
+    "method": "xpath",
+    "arg": "//h1/text()"
+    }
+    ],
+    "information": [
+    {
+    "method": "xpath",
+    "arg": "//div[@class='featured-image-caption']/text()"
+    }
+    ]
+    }
+    }
+    }

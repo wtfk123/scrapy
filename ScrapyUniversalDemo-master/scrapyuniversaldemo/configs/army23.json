@@ -1,0 +1,52 @@
+{
+    "spider": "universal",
+    "type": "简氏防务官方网站    ",
+    "dbase": "army",
+    "collection":"net",
+    "model": false,
+    "video":"",
+    "video_src":"",
+    "audio":"",
+    "audio_src":"",
+    "button":"",
+    "home": "https://www.defence.gov.au/news-events/navy-news",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+    }, 
+    "start_urls": [
+      "https://www.defence.gov.au/news-events/navy-news?page=1"
+    ],
+    "allowed_domains": [
+      "www.international.gc.ca"
+    ],
+    "rules": [
+      {
+        "link_extractor": {
+          "allow": "/news-events/navy-news\\?page\\=\\d+"
+        },
+        "follow": true
+      },
+      {
+        "link_extractor": {
+          "allow": "/news-events/news/.+/.+"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//h1//text()//div[@class='dod-content']//text()"
+          }
+        ]
+      }
+    }
+  
+  }
+  
+  

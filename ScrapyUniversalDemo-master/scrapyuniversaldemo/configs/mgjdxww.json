@@ -1,0 +1,68 @@
+{
+    "spider": "universal",
+    "type": "美国军队新闻网",
+    "dbase": "army",
+    "home": "https://www.usmilnews.com/",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+    },
+    "start_urls": [
+      "https://www.usmilnews.com/"
+    ],
+    "allowed_domains": [
+      "www.usmilnews.com"
+    ],
+    "rules": [
+      {
+        "link_extractor": {
+          "allow": "r'/1076/index\\d+\\.html'"
+
+        },
+        "follow": true
+
+      },
+      {
+        "link_extractor": {
+          "allow": "/.+\\/[\\w\\-]+/"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"td-pb-row\"]//h1/text()"
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"td-pb-row\"]//p/text()"
+          }
+        ],
+        "froms": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"td-pb-row\"]//div[@class=\"td-pb-span4 td-main-sidebar\"]/text()"
+
+          }
+        ],
+
+        "editor": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"td-pb-row\"]//div[@class=\"td-module-meta-info\"]/text()"
+          }
+        ]
+
+      }
+    }
+  }
+
+
+

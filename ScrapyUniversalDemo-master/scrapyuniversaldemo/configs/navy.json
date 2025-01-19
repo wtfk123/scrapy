@@ -1,0 +1,58 @@
+{
+    "spider": "universal",
+    "type": "美国海军官网",
+    "dbase": "army",
+    "home": "https://www.navytimes.com/",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+    }, 
+    "start_urls": [
+      "https://www.navytimes.com/military-honor/"
+    ],
+    "allowed_domains": [
+      "www.navytimes.com"
+    ],
+    "rules": [
+      
+          {
+            "link_extractor": {
+              "allow": ""
+            },
+            "follow": false,
+            "callback": "parse_detail"
+          }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//h1//text()"
+          }
+        ],
+        "date": [
+          {
+            "method": "xpath",
+            "arg": "//time//text()"
+  
+          }
+        ],
+        "information": [
+            {
+              "method": "xpath",
+              "arg": "//p//text()"
+            }
+          ],
+        "editor": [
+          {
+            "method": "xpath",
+            "arg": "//span[@class=\"Byline__Author-sfpzx0-2 cURSzr\"]//a//text()"
+          }
+        ]
+  
+      }
+    }
+    
+  }

@@ -1,0 +1,72 @@
+{
+    "spider": "universal",
+    "type": "坦桑尼亚",
+    "url_from":"East African Community",
+    "dbase": "ZT",
+    "collection":"net",
+    "model": false,
+    "video":"",
+    "video_src":"",
+    "audio":"",
+    "audio_src":"",
+    "button":"",
+    "home": "https://www.eac.int/",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:123.0) Gecko/20100101 Firefox/123.0"
+    }, 
+    "start_urls": [
+      "https://www.eac.int/press-releases?start=00"
+    ],
+    "allowed_domains": [
+      "www.eac.int"
+    ],
+    "rules": [
+      {
+        "link_extractor": {
+          "allow": "/press-releases\\?start=\\d+"
+        },
+        "follow": true
+      },
+      {
+        "link_extractor": {
+          "allow": "/press-releases/.+"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//h1[@class='uk-article-title']/text()"
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class='uk-container uk-container-center']//p[@style='text-align: justify;']//text()"
+          }
+        ],
+        "date": [
+          {
+            "method": "xpath",
+            "arg": "//time/text()"
+  
+          }
+        ],
+        "editor": [
+          {
+            "method": "xpath",
+            "arg": "//p[@class='uk-article-meta']/a/text()"
+  
+          }
+        ]
+  
+      }
+    }
+  
+  }

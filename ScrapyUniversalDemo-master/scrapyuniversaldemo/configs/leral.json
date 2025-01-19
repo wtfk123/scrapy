@@ -1,0 +1,63 @@
+{
+  "spider": "universal",
+  "type": "中非",
+  "dbase": "Africa",
+  "home": "https://www.leral.net/",
+  "settings": {
+    "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+  }, 
+  "start_urls": [
+    "https://www.leral.net/"
+  ],
+  "allowed_domains": [
+    "leral.net"
+  ],
+  "rules": [
+    {
+      "link_extractor": {
+        "allow": "/.+/"
+      },
+      "follow": false,
+      "callback": "parse_detail"
+    }
+  ],
+  "item": {
+    "class": "MovieItem",
+    "loader": "MovieItemLoader",
+    "attrs": {
+      "name": [
+        {
+          "method": "xpath",
+          "arg": "//div[@class='titre']//h1/text()"
+        }
+      ],
+      "information": [
+        {
+          "method": "xpath",
+          "arg": "//div[@class='texte']//div[@class='access firstletter']/text()"
+        }
+      ],
+      "froms": [
+        {
+          "method": "xpath",
+          "arg": "//div[@class='auteur']//div[@class='access']/text()"
+        }
+      ],
+      "date": [
+        {
+          "method": "xpath",
+          "arg": "//div[@class='auteur']//div[@class='access']/text()"
+        }
+      ],
+      "picture": [
+        {
+          "method": "xpath",
+          "arg": "//div[@class='photo shadow top']//img[@class='not-responsive']/@src"
+        }
+      ]
+
+    }
+  }
+  
+}
+

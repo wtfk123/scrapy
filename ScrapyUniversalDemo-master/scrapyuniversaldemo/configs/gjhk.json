@@ -1,0 +1,63 @@
+{
+    "spider": "universal",
+    "type": "国际航空报告（军事）",
+    "dbase": "army",
+    "home": "https://defencereviewasia.com/category/sea/",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+    },
+    "start_urls": [
+      "https://defencereviewasia.com/category/sea/"
+    ],
+    "allowed_domains": [
+      "defencereviewasia.com"
+    ],
+    "rules": [
+      {
+        "link_extractor": {
+          "allow": "/category/sea/"
+        },
+        "follow": true
+      },
+      {
+        "link_extractor": {
+          "allow": "/[\\w-]+/"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//h1/text()"
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"td-post-content tagdiv-type\"]//p//text()"
+          }
+        ],
+        "date": [
+          {
+            "method": "xpath",
+            "arg": "//header//div[@class=\"td-module-meta-info\"]//span[@class=\"td-post-date\"]//time//text()"
+  
+          }
+        ],
+        "editor": [
+            {
+              "method": "xpath",
+              "arg": "//div[@class=\"td-post-author-name\"]/a//text()"
+    
+            }
+          ]
+      }
+    }
+  }
+  

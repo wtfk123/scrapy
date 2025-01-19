@@ -1,0 +1,65 @@
+{
+    "spider": "universal",
+    "type": "newsweek    ",
+    "dbase": "army",
+    "collection":"net",
+    "model": false,
+    "video":"",
+    "video_src":"",
+    "audio":"",
+    "audio_src":"",
+    "button":"",
+    "home": "https://www.newsweek.com/world?page=1",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+    }, 
+    "start_urls": [
+      "https://www.newsweek.com/world?page=1"
+    ],
+    "allowed_domains": [
+      "www.newsweek.com"
+    ],
+    "rules": [
+      {
+        "link_extractor": {
+          "allow": "/world\\?page\\=\\d+"
+        },
+        "follow": true
+      },
+      {
+        "link_extractor": {
+          "allow": "/.+"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//h1/text()"
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class='article-body v_text']//p//text()"
+          }
+        ],
+        "date": [
+          {
+            "method": "xpath",
+            "arg": "//time/text()"
+  
+          }
+        ]
+      }
+    }
+  
+  }
+  
+  

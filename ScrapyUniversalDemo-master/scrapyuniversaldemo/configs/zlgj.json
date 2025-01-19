@@ -1,0 +1,49 @@
+{
+    "spider": "universal",
+    "type": "战略国际（军事）",
+    "dbase": "army",
+    "home": "https://defaeroreport.com/category/cyber-report/",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+    },
+    "start_urls": [
+      "https://defaeroreport.com/category/cyber-report/"
+    ],
+    "allowed_domains": [
+      "defaeroreport.com"
+    ],
+    "rules": [
+      {
+        "link_extractor": {
+          "allow": "/page/\\d+\\/"
+        },
+        "follow": true
+      },
+      {
+        "link_extractor": {
+          "allow": "/\\d+\\/\\d+\\/\\d+\\/.+/"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//h1/text()"
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class='post-content-right']//p//text()"
+          }
+        ]
+      }
+    }
+  }
+  

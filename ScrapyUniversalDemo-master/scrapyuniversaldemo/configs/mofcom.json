@@ -1,0 +1,45 @@
+{
+  "spider": "universal",
+  "type": "中非",
+  "dbase": "Africa",
+  "home": "http://ci.mofcom.gov.cn/",
+  "settings": {
+    "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+  }, 
+  "start_urls": [
+    "http://ci.mofcom.gov.cn/"
+  ],
+  "allowed_domains": [
+    "ci.mofcom.gov.cn"
+  ],
+  "rules": [
+    {
+      "link_extractor": {
+        "allow": "/article/.+/"
+      },
+      "follow": false,
+      "callback": "parse_detail"
+    }
+  ],
+  "item": {
+    "class": "MovieItem",
+    "loader": "MovieItemLoader",
+    "attrs": {
+      "name": [
+        {
+          "method": "xpath",
+          "arg": "//div[@class='art-title']/text()"
+        }
+      ],
+      "information": [
+        {
+          "method": "xpath",
+          "arg": "//div[@class='art-con']//p/text()"
+        }
+      ]
+
+    }
+  }
+  
+}
+

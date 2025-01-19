@@ -1,0 +1,66 @@
+{
+    "spider": "universal",
+    "type": "尼日利亚",
+    "url_from":"《今日报》",
+    "dbase": "ZT",
+    "collection":"net",
+    "model": false,
+    "video":"",
+    "video_src":"",
+    "audio":"",
+    "audio_src":"",
+    "button":"",
+    "home": "https://www.thisdaylive.com/index.php/",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:123.0) Gecko/20100101 Firefox/123.0"
+    }, 
+    "start_urls": [
+      "https://www.thisdaylive.com/index.php"
+    ],
+    "allowed_domains": [
+      "www.thisdaylive.com"
+    ],
+    "rules": [
+      {
+        "link_extractor": {
+          "allow": "/\\d+/\\d+/\\d+"
+        },
+        "follow": true
+        
+      },
+      {
+        "link_extractor": {
+          "allow": "/.+/"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class='col-xs-12 col-md-8 col-lg-9']//h1[@class='article-title mb-2']/text()"
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class='col-xs-12 col-sm-12 col-md-11']//p//text()"
+          }
+        ],
+        "date": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class='post-meta mb-2']//span[@class='date']/text()"
+  
+          }
+        ]
+  
+      }
+    }
+  
+  }

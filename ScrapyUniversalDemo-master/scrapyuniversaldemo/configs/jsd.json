@@ -1,0 +1,68 @@
+{
+    "spider": "universal",
+    "type": "军事点网",
+    "dbase": "army",
+    "home": "https://militaryspot.com/",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+    },
+    "start_urls": [
+      "https://militaryspot.com/"
+    ],
+    "allowed_domains": [
+      "militaryspot.com"
+    ],
+    "rules": [
+      {
+        "link_extractor": {
+          "allow": "r'/1076/index\\d+\\.html'"
+
+        },
+        "follow": true
+
+      },
+      {
+        "link_extractor": {
+          "allow": "/.+\\/[\\w\\-]+/"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"content-sidebar-wrap\"]//h1/text()"
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"content-sidebar-wrap\"]//p/text()"
+          }
+        ],
+        "froms": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"content-sidebar-wrap\"]//a/text()"
+
+          }
+        ],
+
+        "editor": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"content-sidebar-wrap\"]//figcaption[@class=\"wp-element-caption\"]/text()"
+          }
+        ]
+
+      }
+    }
+  }
+
+
+

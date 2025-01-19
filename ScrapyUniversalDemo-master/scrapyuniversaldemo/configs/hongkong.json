@@ -1,0 +1,66 @@
+{
+  "spider": "universal",
+  "type": "港澳 ",
+  "dbase": "army",
+  "home": "http://hm.people.com.cn/",
+  "settings": {
+    "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+  }, 
+  "start_urls": [
+    "http://hm.people.com.cn/"
+  ],
+  "allowed_domains": [
+    "hm.people.com.cn"
+  ],
+  "rules": [
+    {
+      "link_extractor": {
+        "allow": "r'/42273/index\\d+\\.html'"
+      },
+      "follow": true
+      
+    },
+    {
+      "link_extractor": {
+        "allow": "/n1/.+\\.html"
+      },
+      "follow": false,
+      "callback": "parse_detail"
+    }
+  ],
+  "item": {
+    "class": "MovieItem",
+    "loader": "MovieItemLoader",
+    "attrs": {
+      "name": [
+        {
+          "method": "xpath",
+          "arg": "//div[@class=\"col col-1 fl\"]//h1/text()"
+        }
+      ],
+      "information": [
+        {
+          "method": "xpath",
+          "arg": "//div[@class=\"col col-1 fl\"]//div[@class=\"rm_txt_con cf\"]//p//text()"
+        }
+      ],
+      "date": [
+        {
+          "method": "xpath",
+          "arg": "//div[@class=\"col col-1 fl\"]//div[@class=\"col-1-1 fl\"]/text()"
+
+        }
+      ],
+
+      "editor": [
+        {
+          "method": "xpath",
+          "arg": "//div[@class=\"col col-1 fl\"]//div[@class=\"edit cf\"]/text()"
+        }
+      ]
+
+    }
+  }
+  
+}
+

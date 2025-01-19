@@ -1,0 +1,60 @@
+    {
+        "spider": "universal",
+        "type": "美国陆军协会（军事网站）",
+        "dbase": "army",
+        "home": "https://www.ausa.org/",
+        "settings": {
+        "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+        }, 
+        "start_urls": [
+        "https://www.ausa.org/"
+        ],
+        "allowed_domains": [
+        "www.ausa.org"
+        ],
+        "rules": [
+        {
+            "link_extractor": {
+            "allow": "/.+/"
+            },
+            "follow": false,
+            "callback": "parse_detail"
+        }
+        ],
+        "item": {
+        "class": "MovieItem",
+        "loader": "MovieItemLoader",
+        "attrs": {
+            "name": [
+            {
+                "method": "xpath",
+                "arg": "//div[@class=\"block block-core block-page-title-block page-block-title\"]//h2/text()"
+            }
+            ],
+            "information": [
+            {
+                "method": "xpath",
+                "arg": "//div[@class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"]//p//text()"
+            }
+            ],
+            "date": [
+            {
+                "method": "xpath",
+                "arg": "//div//time/text()"
+    
+            }
+            ],
+    
+            "editor": [
+            {
+                "method": "xpath",
+                "arg": "//div[@class=\"field field--name-field-news-item-image-credit field--type-string field--label-hidden field__item photo-credit-edit\"]/text()"
+            }
+            ]
+    
+        }
+        }
+        
+    }
+    
+    

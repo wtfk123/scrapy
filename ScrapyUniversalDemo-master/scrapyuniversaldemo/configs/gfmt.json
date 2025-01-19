@@ -1,0 +1,54 @@
+{
+    "spider": "universal",
+    "type": "国防媒体（军事）",
+    "dbase": "army",
+    "home": "https://www.defensemedianetwork.com/topics/aerospace/",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+    },
+    "start_urls": [
+      "https://www.defensemedianetwork.com/topics/aerospace/"
+    ],
+    "allowed_domains": [
+      "www.defensemedianetwork.com"
+    ],
+    "rules": [
+      {
+        "link_extractor": {
+          "allow": "/topics/aerospace/page/\\d+\\/"
+        },
+        "follow": true
+      },
+      {
+        "link_extractor": {
+          "allow": "/stories/\\w+\\/"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//h1[@class='main-heading']/text()"
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class='entry']/p//text()"
+          }
+        ],
+        "date": [
+          {
+            "method": "xpath",
+            "arg": "//p[@class='author-byline']/text()"
+          }
+        ]
+      }
+    }
+  }

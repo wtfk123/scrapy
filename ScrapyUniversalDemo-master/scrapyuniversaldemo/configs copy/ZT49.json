@@ -1,0 +1,72 @@
+{
+    "spider": "universal",
+    "type": "坦桑尼亚",
+    "url_from":"UK in Tanzania",
+    "dbase": "ZT",
+    "collection":"net",
+    "model": false,
+    "video":"",
+    "video_src":"",
+    "audio":"",
+    "audio_src":"",
+    "button":"",
+    "home": "https://www.gov.uk/government/news/",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:123.0) Gecko/20100101 Firefox/123.0"
+    }, 
+    "start_urls": [
+      "https://www.gov.uk/search/news-and-communications?page=1"
+    ],
+    "allowed_domains": [
+      "www.gov.uk"
+    ],
+    "rules": [
+      {
+        "link_extractor": {
+          "allow": "/search/news-and-communications\\?page=\\d+"
+        },
+        "follow": true
+      },
+      {
+        "link_extractor": {
+          "allow": "/government/news/.+"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class='direction-ltr govuk-width-container']//div[@class='gem-c-title govuk-!-margin-top-8 govuk-!-margin-bottom-8']/h1/text()"
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//main[@class='news-article']//p//text()"
+          }
+        ],
+        "date": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class='direction-ltr govuk-width-container']//div[@class='app-c-published-dates']/text()"
+  
+          }
+        ],
+        "editor": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class='direction-ltr govuk-width-container']//div[@class='gem-c-metadata']//dd[@class='gem-c-metadata__definition' ]/a/text()"
+  
+          }
+        ]
+  
+      }
+    }
+  
+  }

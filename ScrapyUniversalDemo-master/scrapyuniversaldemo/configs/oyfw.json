@@ -1,0 +1,58 @@
+{
+  "spider": "universal",
+  "type": "欧亚防务新闻（army）",
+  "dbase": "army",
+  "home": "https://www.eurasiantimes.com/category/americas/",
+  "settings": {
+    "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+  }, 
+  "start_urls": [
+    "https://www.eurasiantimes.com/category/americas/"
+  ],
+  "allowed_domains": [
+    "eurasiantimes.com"
+  ],
+  "rules": [
+    {
+      "link_extractor": {
+        "allow": "/[\\w\\-]+/"
+      },
+      "follow": false,
+      "callback": "parse_detail"
+    }
+  ],
+  "item": {
+    "class": "MovieItem",
+    "loader": "MovieItemLoader",
+    "attrs": {
+      "name": [
+        {
+          "method": "xpath",
+          "arg": "//h1[@class='entry-title']/text()"
+        }
+      ],
+      "date": [
+        {
+          "method": "xpath",
+          "arg": "//span[@class='td-post-date']//time/text()"
+
+        }
+      ],
+        "editor": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class='td-post-author-name']/a/text()"
+  
+          }
+      ],
+      "information": [
+        {
+          "method": "xpath",
+          "arg": "//div[@class='td-post-content tagdiv-type']/p/text()"
+
+        }
+      ]
+    }
+  }
+}
+  

@@ -1,0 +1,60 @@
+    {
+        "spider": "universal",
+        "type": "空军杂志（军事网站）",
+        "dbase": "army",
+        "home": "https://www.airandspaceforces.com/",
+        "settings": {
+        "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+        }, 
+        "start_urls": [
+        "https://www.airandspaceforces.com/"
+        ],
+        "allowed_domains": [
+        "www.airandspaceforces.com"
+        ],
+        "rules": [
+        {
+            "link_extractor": {
+            "allow": "/.+/"
+            },
+            "follow": false,
+            "callback": "parse_detail"
+        }
+        ],
+        "item": {
+        "class": "MovieItem",
+        "loader": "MovieItemLoader",
+        "attrs": {
+            "name": [
+            {
+                "method": "xpath",
+                "arg": "//div//h1/text()"
+            }
+            ],
+            "information": [
+            {
+                "method": "xpath",
+                "arg": "//div[@class=\"post-body\"]//p//text()"
+            }
+            ],
+            "date": [
+            {
+                "method": "xpath",
+                "arg": "//div[@class=\"author-date\"]/text()"
+    
+            }
+            ],
+    
+            "editor": [
+            {
+                "method": "xpath",
+                "arg": "//div[@class=\"author-date\"]/text()"
+            }
+            ]
+    
+        }
+        }
+        
+    }
+    
+    

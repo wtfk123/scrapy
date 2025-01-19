@@ -1,0 +1,67 @@
+{
+    "spider": "universal",
+    "type": "简氏防务官方网站    ",
+    "net_name": "简氏防务官方网站    ",
+    "dbase": "army",
+    "home": "https://www.janes.com/defence-news/",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+    }, 
+    "start_urls": [
+      "https://www.janes.com/defence-news/land-forces/1"
+    ],
+    "allowed_domains": [
+      "www.janes.com"
+    ],
+    "rules": [
+      {
+        "link_extractor": {
+          "allow": "/defence-news/land-forces/\\d+"
+        },
+        "follow": true
+      },
+      {
+        "link_extractor": {
+          "allow": "/defence-news/land-forces/latest/.+"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//div[@id=\"article-1\"]/h1/text()"
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"read-more-p\"]/p/text()"
+          }
+        ],
+        "date": [
+          {
+            "method": "xpath",
+            "arg": "//p[@class=\"text-muted small text-uppercase\"]/strong/text()"
+  
+          }
+        ],
+  
+        "editor": [
+          {
+            "method": "xpath",
+            "arg": "//p[@class=\"text-muted small\"]/strong/text()"
+          }
+        ]
+
+      }
+    }
+  
+  }
+  
+  

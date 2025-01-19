@@ -1,0 +1,59 @@
+{
+    "spider": "universal",
+    "type": "坦桑尼亚",
+    "url_from":"The EastAfrican",
+    "dbase": "ZT",
+    "collection":"net",
+    "model": false,
+    "video":"",
+    "video_src":"",
+    "audio":"",
+    "audio_src":"",
+    "button":"",
+    "home": "https://www.theeastafrican.co.ke/",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Mobile Safari/537.36"
+    }, 
+    "start_urls": [
+      "https://www.theeastafrican.co.ke/"
+    ],
+    "allowed_domains": [
+      "www.theeastafrican.co.ke"
+    ],
+   "rules": [
+      
+      {
+        "link_extractor": {
+          "allow": "/.+/"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//article[@class='wrapper newsplex-article']//header/h2/text()"
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//article[@class='article']/section[@class='body-copy']//p//text()"
+          }
+        ],
+        "date": [
+          {
+            "method": "xpath",
+            "arg": "//article[@class='wrapper newsplex-article']//header/h6/text()"
+          }
+        ]
+  
+      }
+    }
+  
+  }

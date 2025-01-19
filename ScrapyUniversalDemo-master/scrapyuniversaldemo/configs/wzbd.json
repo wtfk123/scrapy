@@ -1,0 +1,60 @@
+    {
+        "spider": "universal",
+        "type": "武装部队通信和电子协会（美国军事网站）",
+        "dbase": "army",
+        "home": "https://www.afcea.org/",
+        "settings": {
+        "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+        }, 
+        "start_urls": [
+        "https://www.afcea.org/signal-media/"
+        ],
+        "allowed_domains": [
+        "www.afcea.org"
+        ],
+        "rules": [
+        {
+            "link_extractor": {
+            "allow": "/.+/"
+            },
+            "follow": false,
+            "callback": "parse_detail"
+        }
+        ],
+        "item": {
+        "class": "MovieItem",
+        "loader": "MovieItemLoader",
+        "attrs": {
+            "name": [
+            {
+                "method": "xpath",
+                "arg": "//h1/text()"
+            }
+            ],
+            "information": [
+            {
+                "method": "xpath",
+                "arg": "//div[@class=\"field__item\"]//p//text()"
+            }
+            ],
+            "date": [
+            {
+                "method": "xpath",
+                "arg": "//div[@class=\"pageheader__sidebar\"]//time/text()"
+    
+            }
+            ],
+    
+            "editor": [
+            {
+                "method": "xpath",
+                "arg": "//div[@class=\"field field--name-field-author field--type-string field--label-hidden field__item\"]/text()"
+            }
+            ]
+    
+        }
+        }
+        
+    }
+    
+    

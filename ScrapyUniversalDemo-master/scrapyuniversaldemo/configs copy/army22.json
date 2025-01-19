@@ -1,0 +1,60 @@
+{
+    "spider": "universal",
+    "type": "简氏防务官方网站    ",
+    "net_name": "简氏防务官方网站    ",
+    "dbase": "army",
+    "home": "https://www.international.gc.ca/world-monde/stories-histoires/index.aspx?lang=eng",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+    }, 
+    "start_urls": [
+      "https://www.international.gc.ca/world-monde/stories-histoires/index.aspx?lang=eng"
+    ],
+    "allowed_domains": [
+      "www.international.gc.ca"
+    ],
+    "rules": [
+      {
+        "link_extractor": {
+          "allow": "/world-monde/stories-histoires/index\\.aspx\\?lang\\=eng"
+        },
+        "follow": true
+      },
+      {
+        "link_extractor": {
+          "allow": "/world-monde/stories-histoires/\\d+/.+"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//h1//text()"
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//div//p/text()"
+          }
+        ],
+        "date": [
+          {
+            "method": "xpath",
+            "arg": "//time/text()"
+  
+          }
+        ]
+  
+      }
+    }
+  
+  }
+  
+  

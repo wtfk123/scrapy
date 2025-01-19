@@ -1,0 +1,64 @@
+{
+    "spider": "universal",
+    "type": "美国国家利益网",
+    "dbase": "army",
+    "home": "https://nationalinterest.org/",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.139 Safari/537.36"
+    },
+    "start_urls": [
+      "https://nationalinterest.org/tag/military"
+    ],
+    "allowed_domains": [
+      "nationalinterest.org"
+    ],
+    "rules": [
+      {
+        "link_extractor": {
+          "allow": "/military?page=\\d+"
+
+        },
+        "follow": true
+
+      },
+      {
+        "link_extractor": {
+          "allow": "/.+/"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//header[@class=\"meta meta--detail\"]/h1/text()"
+          }
+        ],
+        "date": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"meta__row\"]/span[@class=\"meta__date\"]/text()"
+
+          }
+        ],
+        "editor": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"meta__row\"]/span[@class=\"meta__author\"]/a/text()"
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"detail__content\"]//text()"
+          }
+        ]
+
+      }
+    }
+  }

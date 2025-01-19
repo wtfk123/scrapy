@@ -1,0 +1,68 @@
+{
+  "spider": "universal",
+  "type": "美国海军 ",
+  "net_name": "美国海军 ",
+  "dbase": "army",
+  "collection":"net",
+  "model": false,
+  "video":"",
+  "video_src":"",
+  "audio":"",
+  "audio_src":"",
+  "button":"",
+  "home": "https://www.cmc.marines.mil/Priorities-Guidance-and-Concepts/",
+  "settings": {
+    "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+  }, 
+  "start_urls": [
+    "https://www.cmc.marines.mil/Priorities-Guidance-and-Concepts"
+  ],
+  "allowed_domains": [
+    "www.cmc.marines.mil"
+  ],
+  "rules": [
+
+    {
+      "link_extractor": {
+        "allow": "/Priorities-Guidance-and-Concepts/Article/Article/\\d+/.+/"
+      },
+      "follow": false,
+      "callback": "parse_detail"
+    }
+  ],
+  "item": {
+    "class": "MovieItem",
+    "loader": "MovieItemLoader",
+    "attrs": {
+      "name": [
+        {
+          "method": "xpath",
+          "arg": "//div//h1[@class=\"title\"]/text()"
+        }
+      ],
+      "information": [
+        {
+          "method": "xpath",
+          "arg": "//div[@class=\"body-text\"]//p/text()"
+        }
+      ],
+      "date": [
+        {
+          "method": "xpath",
+          "arg": "//div[@class=\"col-sm-8 offset-sm-2\"]//p/span[@class=\"publishdate\"]/text()"
+
+        }
+      ],
+
+      "editor": [
+        {
+          "method": "xpath",
+          "arg": "//div[@class=\"col-sm-8 offset-sm-2\"]//p/span[@class=\"unit\"]/text()"
+        }
+      ]
+
+    }
+  }
+
+}
+

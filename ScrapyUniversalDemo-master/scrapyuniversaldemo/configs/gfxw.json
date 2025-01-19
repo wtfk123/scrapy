@@ -1,0 +1,54 @@
+{
+    "spider": "universal",
+    "type": "国防新闻",
+    "dbase": "army",
+    "home": "https://www.defensenews.com/",
+    "settings": {
+        "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0"
+    },
+    "start_urls": [
+        "https://www.defensenews.com/"
+    ],
+    "allowed_domains": [
+        "www.defensenews.com"
+    ],
+    "rules": [
+        {
+            "link_extractor": {
+                "allow": "/.+/.+/2023/\\d+/\\d+/.+/"
+            },
+            "follow": false,
+            "callback": "parse_detail"
+        }
+    ],
+    "item": {
+        "class": "MovieItem",
+        "loader": "MovieItemLoader",
+        "attrs": {
+            "name": [
+                {
+                    "method": "xpath",
+                    "arg": "//div[@class=\"ArticleHeader__Meta-sc-1dhqito-4 cHZbZO c-articleHeader__meta\"]/h1/text()"
+                }
+            ],
+            "information": [
+                {
+                    "method": "xpath",
+                    "arg": "//article/p/text()"
+                }
+            ],
+            "date": [
+                {
+                    "method": "xpath",
+                    "arg": "//div[@class=\"c-articleHeader__date\"]/time/text()"
+                }
+            ],
+            "editor": [
+                {
+                    "method": "xpath",
+                    "arg": "//span[@class=\"Byline__Author-sfpzx0-2 cURSzr\"]/a/text()"
+                }
+            ]
+        }
+    }
+}

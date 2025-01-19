@@ -1,0 +1,54 @@
+{
+    "spider": "universal",
+    "type": "美国国防部 ",
+    "net_name": "美国国防部 ",
+    "dbase": "army",
+    "home": "https://www.defense.gov/",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+    }, 
+    "start_urls": [
+      "https://www.defense.gov/News/News-Stories/"
+    ],
+    "allowed_domains": [
+      "www.defense.gov"
+    ],
+    "rules": [
+      {
+        "link_extractor": {
+          "allow": "/.+/"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//div//h1[@class=\"maintitle\"]/text()"
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"body\"]/p/text()"
+          }
+        ],
+        "date": [
+          {
+            "method": "xpath",
+            "arg": "//div/header//div/span/text()"
+  
+          }
+        ]
+
+      }
+    }
+  
+  }
+  
+  

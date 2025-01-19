@@ -1,0 +1,66 @@
+{
+    "spider": "universal",
+    "type": "美国",
+    "url_from":"白宫官方",
+    "dbase": "army",
+    "collection":"net",
+    "model": false,
+    "video":"",
+    "video_src":"",
+    "audio":"",
+    "audio_src":"",
+    "button":"",
+    "home": "https://www.whitehouse.gov/briefing-room/page/2/",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:123.0) Gecko/20100101 Firefox/123.0"
+    }, 
+    "start_urls": [
+      "https://www.whitehouse.gov/briefing-room/"
+    ],
+    "allowed_domains": [
+      "www.whitehouse.gov"
+    ],
+    "rules": [
+      {
+        "link_extractor": {
+          "allow": "/briefing-room/page/\\d+/"
+        },
+        "follow": true
+        
+      },
+      {
+        "link_extractor": {
+          "allow": "/briefing-room/\\w+/\\d{4}/\\d{2}/\\d{2}/.+/"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//h1[@class='page-title topper__title news']//text()"
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class='container']//p//text()"
+          }
+        ],
+        "date": [
+          {
+            "method": "xpath",
+            "arg": "//time[@class='posted-on entry-date published updated']//text()"
+  
+          }
+        ]
+  
+      }
+    }
+  
+  }

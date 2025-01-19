@@ -1,0 +1,74 @@
+{
+    "spider": "universal",
+    "type": "美国陆军    ",
+    "net_name": "美国陆军    ",
+    "dbase": "army",
+    "collection":"net",
+    "model": false,
+    "video":"",
+    "video_src":"",
+    "audio":"",
+    "audio_src":"",
+    "button":"",
+    "home": "https://www.army.mil/news",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+    }, 
+    "start_urls": [
+      "https://www.army.mil"
+    ],
+    "allowed_domains": [
+      "www.army.mil"
+    ],
+    "rules": [
+      {
+        "link_extractor": {
+          "allow": "/news"
+        },
+        "follow": true
+      },
+      {
+        "link_extractor": {
+          "allow": "/article/\\d+/.+"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"span12\"]/h1/text()"
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"ql-editor\"]/p/text()"
+          }
+        ],
+        "date": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"span12\"]/p/span/text()"
+  
+          }
+        ],
+  
+        "editor": [
+          {
+            "method": "xpath",
+            "arg": "//div[@class=\"span12\"]/p/text()"
+          }
+        ]
+
+      }
+    }
+  
+  }
+  
+  

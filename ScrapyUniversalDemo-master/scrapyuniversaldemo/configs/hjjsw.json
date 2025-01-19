@@ -1,0 +1,68 @@
+{
+    "spider": "universal",
+    "type": "海军技术网",
+    "dbase": "army",
+    "home": "http://naval-technology.com/",
+    "settings": {
+      "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+    },
+    "start_urls": [
+      "http://naval-technology.com/"
+    ],
+    "allowed_domains": [
+      "naval-technology.com"
+    ],
+    "rules": [
+      {
+        "link_extractor": {
+          "allow": "r'/1076/index\\d+\\.html'"
+
+        },
+        "follow": true
+
+      },
+      {
+        "link_extractor": {
+          "allow": "/.+\\/[\\w\\-]+/"
+        },
+        "follow": false,
+        "callback": "parse_detail"
+      }
+    ],
+    "item": {
+      "class": "MovieItem",
+      "loader": "MovieItemLoader",
+      "attrs": {
+        "name": [
+          {
+            "method": "xpath",
+            "arg": "//main[@class=\"article-page  gdm-opinion-article\"]//h1/text()"
+          }
+        ],
+        "information": [
+          {
+            "method": "xpath",
+            "arg": "//main[@class=\"article-page  gdm-opinion-article\"]//p/text()"
+          }
+        ],
+        "froms": [
+          {
+            "method": "xpath",
+            "arg": "//main[@class=\"article-page  gdm-opinion-article\"]//section[@class=\"article-grid article-grid-row with-images more-news cust_more_news\"]/text()"
+
+          }
+        ],
+
+        "editor": [
+          {
+            "method": "xpath",
+            "arg": "//main[@class=\"article-page  gdm-opinion-article\"]//div[@class=\"article-meta\"]/text()"
+          }
+        ]
+
+      }
+    }
+  }
+
+
+
